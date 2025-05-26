@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Quick_Kids_Quiz.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Quick_Kids_Quiz"
+             Title="Quick Kids Quiz"
+             BackgroundColor="#E8F4FD">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*,Auto,Auto" 
+              Padding="20"
+              RowSpacing="20">
+
+            <!-- Header Section -->
+            <StackLayout Grid.Row="0" Spacing="10">
+                <Label Text="🌟 Kids Quiz Time! 🌟"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#2E86AB"
+                       HorizontalOptions="Center" />
+
+                <Frame BackgroundColor="#FFE66D"
+                       CornerRadius="15"
+                       Padding="15,10"
+                       HasShadow="True">
+                    <StackLayout Orientation="Horizontal" 
+                                 HorizontalOptions="Center"
+                                 Spacing="20">
+                        <Label Text="{Binding CurrentQuestionNumber, StringFormat='Question: {0}/10'}"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2E86AB" />
+                        <Label Text="{Binding Score, StringFormat='Score: {0}'}"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2E86AB" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <!-- Question Section -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="20"
+                   Margin="0,10">
+
+                <StackLayout Spacing="20">
+                    <!-- Question Text -->
+                    <Label Text="{Binding CurrentQuestion.Question}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#2E86AB"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+
+                    <!-- Answer Options -->
+                    <StackLayout x:Name="AnswerContainer" Spacing="15">
+                        <!-- Option A -->
+                        <Button x:Name="OptionA"
+                                Text="{Binding CurrentQuestion.OptionA}"
+                                BackgroundColor="#A8DADC"
+                                TextColor="#1D3557"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                CornerRadius="15"
+                                HeightRequest="60"
+                                Clicked="OnAnswerSelected"
+                                CommandParameter="A" />
+
+                        <!-- Option B -->
+                        <Button x:Name="OptionB"
+                                Text="{Binding CurrentQuestion.OptionB}"
+                                BackgroundColor="#A8DADC"
+                                TextColor="#1D3557"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                CornerRadius="15"
+                                HeightRequest="60"
+                                Clicked="OnAnswerSelected"
+                                CommandParameter="B" />
+
+                        <!-- Option C -->
+                        <Button x:Name="OptionC"
+                                Text="{Binding CurrentQuestion.OptionC}"
+                                BackgroundColor="#A8DADC"
+                                TextColor="#1D3557"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                CornerRadius="15"
+                                HeightRequest="60"
+                                Clicked="OnAnswerSelected"
+                                CommandParameter="C" />
+
+                        <!-- Option D -->
+                        <Button x:Name="OptionD"
+                                Text="{Binding CurrentQuestion.OptionD}"
+                                BackgroundColor="#A8DADC"
+                                TextColor="#1D3557"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                CornerRadius="15"
+                                HeightRequest="60"
+                                Clicked="OnAnswerSelected"
+                                CommandParameter="D" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Feedback Section -->
+            <Frame Grid.Row="2"
+                   x:Name="FeedbackFrame"
+                   BackgroundColor="#90EE90"
+                   CornerRadius="15"
+                   Padding="15"
+                   IsVisible="False"
+                   HasShadow="True"
+                   Margin="0,10">
+
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="Center"
+                             Spacing="10">
+                    <Label x:Name="FeedbackIcon"
+                           Text="✅"
+                           FontSize="24" />
+                    <Label x:Name="FeedbackText"
+                           Text="Correct! Well done!"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#2E8B57"
+                           VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Control Buttons -->
+            <StackLayout Grid.Row="3" 
+                         Orientation="Horizontal" 
+                         HorizontalOptions="Center"
+                         Spacing="20"
+                         Margin="0,10">
+
+                <Button x:Name="NextButton"
+                        Text="Next Question ➡️"
+                        BackgroundColor="#FF6B6B"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        Clicked="OnNextQuestion"
+                        IsVisible="False" />
+
+                <Button x:Name="RestartButton"
+                        Text="🔄 Play Again"
+                        BackgroundColor="#4ECDC4"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        Clicked="OnRestartQuiz"
+                        IsVisible="False" />
+            </StackLayout>
+
+            <!-- Game Over Section -->
+            <Frame Grid.Row="1"
+                   x:Name="GameOverFrame"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="30"
+                   IsVisible="False">
+
+                <StackLayout Spacing="20" HorizontalOptions="Center">
+                    <Label Text="🎉 Quiz Complete! 🎉"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="#2E86AB"
+                           HorizontalOptions="Center" />
+
+                    <Label x:Name="FinalScoreLabel"
+                           Text="Your Score: 0/10"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#FF6B6B"
+                           HorizontalOptions="Center" />
+
+                    <Label x:Name="PerformanceLabel"
+                           Text="Great job!"
+                           FontSize="18"
+                           TextColor="#2E8B57"
+                           HorizontalOptions="Center" />
+                </StackLayout>
+            </Frame>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

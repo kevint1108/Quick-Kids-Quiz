@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quick_Kids_Quiz.MainMenuPage"
+             Title="Main Menu"
+             BackgroundColor="LightSkyBlue">
+
+    <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+        <Label Text="Quick Kids Quiz" 
+               FontSize="36" 
+               HorizontalOptions="Center"
+               TextColor="White"
+               FontAttributes="Bold"/>
+
+        <Button Text="Start Quiz"
+                FontSize="20"
+                Clicked="OnStartClicked"
+                BackgroundColor="DarkBlue"
+                TextColor="White"
+                CornerRadius="12"/>
+
+        <Button Text="About"
+                FontSize="20"
+                Clicked="OnAboutClicked"
+                BackgroundColor="DarkGreen"
+                TextColor="White"
+                CornerRadius="12"/>
+    </VerticalStackLayout>
+</ContentPage>
