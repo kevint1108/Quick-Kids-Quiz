@@ -1,6 +1,6 @@
 # 🎉 Quick Kids Quiz - .NET MAUI App
 
-**Quick Kids Quiz** is a fun educational mobile quiz game application designed for children and our goal to help children to test their knowledge. Built with [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/), it runs on Android, iOS, macOS, and Windows, offering a smooth cross-platform experience with an intuitive and colorful UI tailored for kids.
+**Quick Kids Quiz** is a fun educational mobile quiz game application designed for children and our goal to develop app for children to improve their knowledge. Built with [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/), it runs on Android, iOS, macOS, and Windows, offering a smooth cross-platform experience with an intuitive and colorful UI tailored for kids.
 
 ## ✨ Features
 
